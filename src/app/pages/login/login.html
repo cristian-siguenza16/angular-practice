@@ -1,0 +1,56 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+  
+  <mat-card class="w-full max-w-sm shadow-xl rounded-lg">
+    
+    <mat-card-header class="flex-1 w-full items-center justify-center">
+      <div  class="mb-4 flex flex-col items-center pt-4">
+        <mat-icon class="mb-2">lock_open</mat-icon>
+        <mat-card-title class="text-2xl font-semibold text-gray-800">Registro de maestross</mat-card-title>
+      </div>
+    </mat-card-header>
+    
+    <mat-card-content [formGroup]="loginForm">
+      <form (ngSubmit)="onLogin()" class="space-y-5">
+        
+        <label for="">Usuario</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input 
+            matInput 
+            formControlName="username" 
+            placeholder="Correo o Nombre de Usuario"
+            required>
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+            El usuario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+
+        <label for="">Contraseña</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input 
+            matInput 
+            type="password" 
+            formControlName="password" 
+            placeholder="Contraseña"
+            required>
+          <mat-icon matPrefix>vpn_key</mat-icon>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            La contraseña es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        
+        <button 
+          mat-raised-button 
+          color="primary" 
+          type="submit" 
+          [disabled]="loginForm.invalid"
+          (click)="onLogin()"
+          class="w-full h-12 text-lg font-medium">
+          Iniciar Sesión
+        </button>
+        
+      </form>
+    </mat-card-content>
+    
+  </mat-card>
+</div>
